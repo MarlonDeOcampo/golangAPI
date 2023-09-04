@@ -1,22 +1,15 @@
 package main
 
 import (
-	"log"
-	"net/http"
-	"payment-service/controllers"
 	"payment-service/db_client"
+	"payment-service/route"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	db_client.InitializeDBConnection()
-
-	http.HandleFunc("/payment/create", controllers.CreatePayment)
-
-	http.HandleFunc("/payment/update", controllers.UpdatePayment)
-
-	http.HandleFunc("/payment/get-payments", controllers.GetAllPayments)
-
-	http.HandleFunc("/payment/details", controllers.GetAllPayments)
-
-	log.Fatal(http.ListenAndServe(":4001", nil))
+	router := gin.New()
+	route.GetPayment(router)
+	router.Run(":4005")
 }

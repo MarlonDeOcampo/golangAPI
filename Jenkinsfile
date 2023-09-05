@@ -5,12 +5,11 @@ pipeline {
     }
     stages {
         stage("building") {
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
             steps {
+                sh "docker --version"
                 sh "rm -rv *"
                 sh 'git clone https://github.com/MarlonDeOcampo/golangAPI.git'
-                sh "docker build -t alhon05/payment-service:$BUILD_ID ." 
+                // sh "docker build -t alhon05/payment-service:$BUILD_ID ." 
                 // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 // sh "docker push alhon05/payment-service:$BUILD_ID ." 
             }

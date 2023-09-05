@@ -12,7 +12,9 @@ pipeline {
                 }
                 sh "rm -rv *"
                 sh 'git clone https://github.com/MarlonDeOcampo/golangAPI.git'
+                sh "ls -1"
                 sh "cd golangAPI"
+                sh "pwd"
                 sh "ls -1"
                 sh "docker build -t alhon05/payment-service:$BUILD_ID ." 
                 // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'

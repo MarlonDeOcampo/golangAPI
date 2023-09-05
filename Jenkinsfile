@@ -10,6 +10,7 @@ pipeline {
                     def dockerHome = tool 'myDocker'
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                 }
+                sh "systemctl status docker"
                 sh "rm -rf *"
                 // sh "git init"
                 // sh "git remote add origin https://github.com/MarlonDeOcampo/golangAPI.git"

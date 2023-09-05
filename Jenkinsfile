@@ -4,11 +4,9 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
-        stage('Initialize') {
+        stage("building") {
             def dockerHome = tool 'myDocker'
             env.PATH = "${dockerHome}/bin:${env.PATH}"
-        }
-        stage("building") {
             steps {
                 sh "rm -rv *"
                 sh 'git clone https://github.com/MarlonDeOcampo/golangAPI.git'

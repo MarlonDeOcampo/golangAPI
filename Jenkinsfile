@@ -11,8 +11,8 @@ pipeline {
                     env.PATH = "${dockerHome}/bin:${env.PATH}"
                 }
                 sh "rm -rf *"
-                sh "git init"
-                sh "git remote add origin https://github.com/MarlonDeOcampo/golangAPI.git"
+                // sh "git init"
+                // sh "git remote add origin https://github.com/MarlonDeOcampo/golangAPI.git"
                 sh "git pull origin main"
                 sh "pwd"
                 sh "ls"

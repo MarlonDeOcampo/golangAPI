@@ -12,8 +12,8 @@ pipeline {
                 }
                 sh "rm -rv *"
                 sh "git init"
-                sh "git remote add origin https://github.com/MarlonDeOcampo/golangAPI.git'"
-                sh "git pull origin master"
+                sh "git remote add origin https://github.com/MarlonDeOcampo/golangAPI.git"
+                sh "git pull origin main"
                 sh "pwd"
                 sh "ls"
                 sh "ls -1"

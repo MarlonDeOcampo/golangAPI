@@ -7,6 +7,7 @@ pipeline {
         stage("building") {
             steps {
                 sh "pwd"
+                sh "ls -1"
                 // sh 'git clone https://github.com/MarlonDeOcampo/golangAPI.git'
             }
             // steps {

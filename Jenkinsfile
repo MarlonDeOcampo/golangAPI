@@ -3,29 +3,25 @@ pipeline {
     agent any
 
     stages {
-        stage("cloning") {
+        stage("building") {
             steps {
                 sh 'git pull https://github.com/MarlonDeOcampo/golangAPI.git'
+                echo "successfully pulled the repo"
             }
-            echo "successfully pulled the repo"
-        }
-        stage("building image") {
             steps {
                 sh "docker build -t alhon05/payment-service:$BUILD_ID ." 
+                echo "successfully built the image"
             }
-            echo "successfully built the image"
-        }
-        stage("pushing image") {
             steps {
                 sh "docker push alhon05/payment-service:$BUILD_ID ." 
+                echo "successfully pushed the image"
             }
-            echo "successfully pushed the image"
         }
-        stage('Deploy Image') {
+        stage('deploying') {
             steps{
                 sh "docker stack deploy -c alhon05/payment-service:$BUILD_ID main"
+                echo "successfully re-deployed the image"
             }
-            echo "successfully re-deployed the image"
         }
     }
 }

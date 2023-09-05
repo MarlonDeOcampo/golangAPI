@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage("building") {
             steps {
-                sh 'git clone https://github.com/MarlonDeOcampo/golangAPI.git'
+                sh "pwd"
+                // sh 'git clone https://github.com/MarlonDeOcampo/golangAPI.git'
             }
             // steps {
             //     sh "docker build -t alhon05/payment-service:$BUILD_ID ." 

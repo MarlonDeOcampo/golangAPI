@@ -1,5 +1,5 @@
 pipeline {
-    
+
     agent any
 
     stages {
@@ -11,19 +11,19 @@ pipeline {
         }
         stage("building image") {
             steps {
-                sh docker build -t "alhon05/payment-service:$BUILD_ID" .
+                sh "docker build -t alhon05/payment-service:$BUILD_ID ." 
             }
             echo "successfully built the image"
         }
         stage("pushing image") {
             steps {
-                sh docker push "alhon05/payment-service:$BUILD_ID" .
+                sh "docker push alhon05/payment-service:$BUILD_ID ." 
             }
             echo "successfully pushed the image"
         }
         stage('Deploy Image') {
             steps{
-                sh docker stack deploy -c "alhon05/payment-service:$BUILD_ID" main
+                sh "docker stack deploy -c alhon05/payment-service:$BUILD_ID main"
             }
             echo "successfully re-deployed the image"
         }

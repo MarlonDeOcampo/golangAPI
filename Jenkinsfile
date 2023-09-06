@@ -6,18 +6,15 @@ pipeline {
     stages {
         stage("building") {
             steps {
-                script {
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                }
-                sh "systemctl status docker"
-                sh "rm -rf *"
-                // sh "git init"
-                // sh "git remote add origin https://github.com/MarlonDeOcampo/golangAPI.git"
-                sh "git pull origin main"
+                sh "rm -rv *"
+                git 'https://github.com/MarlonDeOcampo/golangAPI.git'
                 sh "pwd"
-                sh "ls"
-                sh "ls -1"
+                sh "ls -l"
+
+                // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                // sh "rm -rv *"
+                // sh 'git clone https://github.com/MarlonDeOcampo/golangAPI.git'
+                // sh "ls -1"
                 // sh "docker build -t alhon05/payment-service:$BUILD_ID ." 
                 // sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 // sh "docker push alhon05/payment-service:$BUILD_ID ." 
@@ -46,3 +43,8 @@ pipeline {
         }
     }
 }
+
+// script {
+//                     def dockerHome = tool 'myDocker'
+//                     env.PATH = "${dockerHome}/bin:${env.PATH}"
+//                 }

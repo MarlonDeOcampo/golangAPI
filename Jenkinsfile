@@ -31,12 +31,12 @@ pipeline {
             }
         }
         stage('remote host redeploy') {
-            steps {
-                def remote = [:]
-                remote.name = "tns-des145"
-                remote.host = "172.24.31.39"
-                remote.allowAnyHosts = true
+            steps {            
                 script {
+                    def remote = [:]
+                    remote.name = "tns-des145"
+                    remote.host = "172.24.31.39"
+                    remote.allowAnyHosts = true
                     withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-to-host', keyFileVariable: 'identity', passphraseVariable: 'jenkins', usernameVariable: 'tns-des145')]) {
                         remote.user = tns-des145
                         remote.identityFile = identity

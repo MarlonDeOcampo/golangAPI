@@ -32,15 +32,17 @@ pipeline {
             }
         }
         stage('update local') {
-            def remote = [:]
-            remote.name = "tns-des145"
-            remote.host = "172.24.31.39"
-            remote.allowAnyHosts = true
-            script {
-		        withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-to-host', keyFileVariable: 'identity', passphraseVariable: 'jenkins', usernameVariable: 'tns-des145')]) {
-                    remote.user = tns-des145
-                    remote.identityFile = identity
-                    sshCommand remote: remote, command: "pwd"
+            steps {
+                def remote = [:]
+                remote.name = "tns-des145"
+                remote.host = "172.24.31.39"
+                remote.allowAnyHosts = true
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-to-host', keyFileVariable: 'identity', passphraseVariable: 'jenkins', usernameVariable: 'tns-des145')]) {
+                        remote.user = tns-des145
+                        remote.identityFile = identity
+                        sshCommand remote: remote, command: "pwd"
+                    }
                 }
             }
         }

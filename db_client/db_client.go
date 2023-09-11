@@ -1,28 +1,25 @@
 package db_client
 
 import (
-	"database/sql"
 	"fmt"
+	"payment-service/model"
 
 	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
-var DBClient *sql.DB
+var DB *gorm.DB
 
 func InitializeDBConnection() {
-	connStr := "user=postgres dbname=postgres password=secret host=postgres sslmode=disable"
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		panic(err.Error())
-	}
-	defer db.Close()
 
-	err = db.Ping()
+	db, err := gorm.Open(postgres.Open("postgres://postgres:secret@localhost:5432/postgres"), &gorm.Config{})
 	if err != nil {
 		panic(err.Error())
 	}
 
-	DBClient = db
+	db.AutoMigrate(&model.Payment{})
+	DB = db
 
 	fmt.Printf("\nSuccessfully connected to database!\n")
 }

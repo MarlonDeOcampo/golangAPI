@@ -38,7 +38,7 @@ pipeline {
                             configName: "marlon", 
                             transfers: [sshTransfer(
                                 execTimeout: 120000,
-                                execCommand: "cd ~/Documents/golangAPI;env $(cat VERSION=${BUILD_ID} | grep ^[A-Z] | xargs) docker-compose config | docker stack deploy -c stack-main-global.yml main; exit"
+                                execCommand: "cd ~/Documents/golangAPI;env $(cat VERSION=${BUILD_ID} | grep ^[A-Z] | xargs) envsubst < ./stack-main-global.yml | docker stack deploy --compose-file - main; exit"
                             )]
                         ) 
                     ]

@@ -25,7 +25,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   payment-service:
-    image: alhon05/payment-service:${Version}
+    image: "alhon05/payment-service:${VERSION}"
     volumes: 
       - payment_service_data:/services/payment
     ports:

@@ -38,13 +38,13 @@ pipeline {
                             configName: "marlon", 
                             transfers: [sshTransfer(
                                 execTimeout: 120000,
-                                execCommand: "cd ~/Documents/golangAPI;Version=$BUILD_ID docker stack deploy -c stack-main-global.yml main"
+                                execCommand: "cd ~/Documents/golangAPI;Version='v53' docker stack deploy -c stack-main-global.yml main"
                             )]
                         ) 
                     ]
                 )
                 
-            }
+            }s
         } 
     }
     post {

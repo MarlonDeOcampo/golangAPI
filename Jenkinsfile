@@ -6,18 +6,18 @@ pipeline {
     }
 
     stages {
-        // stage('checkout') {
-        //     steps {
-        //        checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/MarlonDeOcampo/golangAPI.git']])
-        //     }
-        // }
-        // stage('build image') {
-        //     steps {
-        //         script {
-        //             sh "docker build -t alhon05/payment-service:v$BUILD_ID ."
-        //         }
-        //     }
-        // }
+        stage('checkout') {
+            steps {
+               checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/MarlonDeOcampo/golangAPI.git']])
+            }
+        }
+        stage('build image') {
+            steps {
+                script {
+                    sh "docker build -t alhon05/payment-service:v$BUILD_ID ."
+                }
+            }
+        }
         stage('Login to Docker Hub') {      	
             steps{                
                     sh 'docker --version'
@@ -25,11 +25,11 @@ pipeline {
                     echo 'Login Completed'      
                 }           
         }
-        // stage('upload image') {
-        //     steps {
-        //         // sh "docker push alhon05/payment-service:v$BUILD_ID"
-        //     }
-        // }
+        stage('upload image') {
+            steps {
+                // sh "docker push alhon05/payment-service:v$BUILD_ID"
+            }
+        }
         stage('redeploy stack') {
             steps {
                 sshPublisher(

@@ -27,24 +27,25 @@ pipeline {
         }
         stage('upload image') {
             steps {
-                sh "docker push alhon05/payment-service:v$BUILD_ID"
+                // sh "docker push alhon05/payment-service:v$BUILD_ID"
             }
         }
-        // stage('remote host redeploy') {
-        //     steps {            
-        //         script {
-        //             def remote = [:]
-        //             remote.name = "tns-des145"
-        //             remote.host = "172.24.31.39"
-        //             remote.allowAnyHosts = true
-        //             withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-to-host', keyFileVariable: 'identity', passphraseVariable: 'jenkins', usernameVariable: 'tns-des145')]) {
-        //                 remote.user = tns-des145
-        //                 remote.identityFile = identity
-        //                 sshCommand remote: remote, command: "pwd"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('redeploy stack') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: "marlon", 
+                            transfers: [sshTransfer(
+                                execTimeout: 120000,
+                                execCommand: "cd ~/Documents/golangAPI; docker stack deploy -c stack-main-global.yml main"
+                            )]
+                        ) 
+                    ]
+                )
+                
+            }
+        } 
     }
     post {
         always {
@@ -53,6 +54,9 @@ pipeline {
         }
     }
 }
+
+
+
 
 
            

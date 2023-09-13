@@ -38,7 +38,7 @@ pipeline {
                             configName: "jenkins", 
                             transfers: [sshTransfer(
                                 execTimeout: 120000,
-                                execCommand: "cd ~/Documents/golangAPI;docker stack deploy stack-main-global.yml main; exit"
+                                execCommand: "cd ~/Documents/golangAPI; docker stack deploy stack-main-global.yml main"
                             )]
                         ) 
                     ]

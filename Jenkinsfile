@@ -27,7 +27,7 @@ pipeline {
         }
         stage('upload image') {
             steps {
-                // sh "docker push alhon05/payment-service:v$BUILD_ID"
+                sh "docker push alhon05/payment-service:v$BUILD_ID"
             }
         }
         stage('redeploy stack') {

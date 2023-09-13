@@ -35,10 +35,10 @@ pipeline {
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
-                            configName: "jenkins", 
+                            configName: "marlon", 
                             transfers: [sshTransfer(
                                 execTimeout: 120000,
-                                execCommand: "cd ~/Documents/golangAPI;VERSION=66 docker stack deploy -c stack-main-global.yml main"
+                                execCommand: "cd ~/Documents/golangAPI;VERSION=$BUILD_ID docker stack deploy -c stack-main-global.yml main"
                             )]
                         ) 
                     ]

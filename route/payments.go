@@ -9,3 +9,7 @@ import (
 func GetPayment(router *gin.Engine) {
 	router.GET("/payment/getpayments", controller.GetPayments)
 }
+
+func UpdatePayment(router *gin.Engine) {
+	router.GET("/payment/updatepayments", controller.UpdatePayments)
+}

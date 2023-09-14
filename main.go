@@ -11,5 +11,5 @@ func main() {
 	db_client.InitializeDBConnection()
 	router := gin.New()
 	route.GetPayment(router)
-	router.Run(":4005")
+	router.Run(":4001")
 }

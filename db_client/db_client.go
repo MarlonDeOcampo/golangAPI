@@ -13,7 +13,7 @@ var DB *gorm.DB
 
 func InitializeDBConnection() {
 
-	db, err := gorm.Open(postgres.Open("postgres://postgres:secret@postgres:5432/postgres"), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open("postgres://postgres:secret@postgres"), &gorm.Config{})
 	if err != nil {
 		panic(err.Error())
 	}
